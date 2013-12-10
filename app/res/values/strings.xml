@@ -22,6 +22,7 @@
     <string name="menu_share_email">E-Mail</string>
     <string name="menu_share_twitter">Twitter</string>
     <string name="menu_share_facebook">Facebook</string>
+    <string name="menu_save">Save</string>
     <string name="menu_share_system">Other System Apps…</string>
 
     <!-- Selection Menu -->
@@ -43,6 +44,10 @@
     <string name="share_system_default_body">View the photo %1$s</string>
     <string name="share_system_send_title">Share photo URL</string>
 
+    <!--  Save locally -->
+    <string name="photo_saved">Photo saved locally</string>
+     <string name="photo_error_onsave">Photo error on save</string>
+    
     <!-- Share Twitter -->
     <string name="share_twitter_requesting_authentication">Requesting twitter authentication…</string>
     <string name="share_twitter_verifying_authentication">Veryfying twitter authentication…</string>

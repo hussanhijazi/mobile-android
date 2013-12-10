@@ -81,7 +81,7 @@ public class PhotoDetailsActivity extends CommonActivity implements TwitterLoadi
     private static final String TAG = PhotoDetailsActivity.class.getSimpleName();
 
     public static final String EXTRA_PHOTO = "EXTRA_PHOTO";
-    
+
     public static final String EXTRA_PHOTOS = "EXTRA_PHOTOS";
 
     public static final String EXTRA_ADAPTER_PHOTOS = "EXTRA_ADAPTER_PHOTOS";
@@ -244,7 +244,7 @@ public class PhotoDetailsActivity extends CommonActivity implements TwitterLoadi
             super.onCreateOptionsMenu(menu, inflater);
             inflater.inflate(R.menu.photo_details, menu);
         }
-        
+
         @Override
         public void onPrepareOptionsMenu(Menu menu) {
             reinitMenu(menu);
@@ -321,6 +321,11 @@ public class PhotoDetailsActivity extends CommonActivity implements TwitterLoadi
                         }
                     });
                     break;
+                case R.id.menu_save:
+                    TrackerUtils.trackOptionsMenuClickEvent("menu_save",
+                            getSupportActivity());
+                    saveActivePhoto();
+                    break;
                 case R.id.menu_edit:
                     TrackerUtils.trackOptionsMenuClickEvent("menu_edit", getSupportActivity());
                     PhotoDetailsEditFragment detailsFragment = new PhotoDetailsEditFragment();
@@ -331,6 +336,17 @@ public class PhotoDetailsActivity extends CommonActivity implements TwitterLoadi
                     result = super.onOptionsItemSelected(item);
             }
             return result;
+        }
+
+        public void saveActivePhoto() {
+            Photo photo = getActivePhoto();
+            if (photo != null)
+            {
+                ShareUtils.savePhoto(photo, getActivity(),
+                        new ProgressDialogLoadingControl(
+                                getSupportActivity(), true, false,
+                                getString(R.string.loading)), bigPhotoSize);
+            }
         }
 
         public void shareActivePhotoViaFacebook() {

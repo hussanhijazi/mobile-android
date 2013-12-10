@@ -2,7 +2,12 @@
 package com.trovebox.android.app.util;
 
 import java.io.File;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import android.content.Context;
 import android.os.Environment;
@@ -61,4 +66,27 @@ public class FileUtils {
 
         return mExternalStorageWriteable;
     }
+    public static boolean copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source.getAbsolutePath());
+            os = new FileOutputStream(dest.getAbsolutePath());
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+            is.close();
+            os.close();
+            return true;
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+         
+       return false;
+    }
+   
+
 }
